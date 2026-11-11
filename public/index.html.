@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>AlertMap Ukraine | Повітряна ситуація</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">A</span><span>AlertMap <b>Ukraine</b></span></a>
+    <div class="top-meta"><span class="live-dot"></span><span id="connection">Підключення...</span><span class="divider"></span><span id="updated">Очікування даних</span></div>
+  </header>
+
+  <main class="layout">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">МОНІТОРИНГ У РЕАЛЬНОМУ ЧАСІ</p>
+        <h1>Повітряна ситуація</h1>
+        <p class="subhead">Статус регіонів України на основі даних API.</p>
+      </div>
+      <div class="status-summary">
+        <div class="summary-number" id="active-count">—</div>
+        <div><strong>регіонів з активною тривогою</strong><small id="total-count">Очікування даних API</small></div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <section class="map-card">
+        <div class="card-heading">
+          <div><h2>Мапа України</h2><p>Натисніть на регіон, щоб переглянути статус.</p></div>
+          <div class="legend"><span><i class="legend-red"></i>Тривога</span><span><i class="legend-green"></i>Немає тривоги</span></div>
+        </div>
+        <div id="map" role="application" aria-label="Мапа повітряних тривог України"></div>
+        <div class="map-note" id="map-note">Для відображення меж областей додайте GeoJSON у <code>data/regions.geojson</code>.</div>
+      </section>
+
+      <aside class="side-column">
+        <section class="card">
+          <div class="card-heading compact"><div><h2>Регіони</h2><p>Поточний статус</p></div><span class="count-pill" id="region-count">0</span></div>
+          <div class="filters">
+            <button class="filter active" data-filter="all">Усі</button>
+            <button class="filter" data-filter="alert">Тривога</button>
+            <button class="filter" data-filter="normal">Без тривоги</button>
+          </div>
+          <div id="region-list" class="region-list"><div class="empty">Очікуємо перші дані…</div></div>
+        </section>
+        <section class="card info-card">
+          <h2>Інформація</h2>
+          <p id="api-state">API ще не підключено.</p>
+          <div class="info-line"><span>Інтервал перевірки</span><b>5 секунд</b></div>
+          <div class="info-line"><span>Джерело</span><b>Ukraine Alert API</b></div>
+        </section>
+      </aside>
+    </section>
+
+    <footer>
+      <span>AlertMap Ukraine · Інформаційний інтерфейс</span>
+      <span>Не замінює офіційні сповіщення та вказівки служб.</span>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
